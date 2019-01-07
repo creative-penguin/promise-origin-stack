@@ -1,0 +1,14 @@
+{
+  "name": "promise-origin-stack",
+  "version": "0.1.0",
+  "description": "Lightweight library to add the original stack trace to unhandled errors in promises",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jim Jenkins <jimjenkins5@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@silvermine/eslint-config": "2.0.0-rc3"
+  }
+}
