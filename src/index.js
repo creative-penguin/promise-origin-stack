@@ -1,5 +1,25 @@
 'use strict';
 
+
+/**
+ * Filters out any stack trace information from this file.
+ *
+ * @param {string} stack - stack trace to filter
+ * @returns {string} - filtered stack trace
+ */
+function filterStack(stack) {
+   let lines = stack.split('\n');
+
+   return lines.reduce((memo, line) => {
+      if (line.indexOf(__filename) < 0) {
+         memo += line + '\n';
+      }
+
+      return memo;
+   }, '');
+}
+
+
 module.exports = {
    register(headerMSG) {
       const HEADER_MESSAGE = headerMSG || 'Promise Created At:';
@@ -32,7 +52,9 @@ module.exports = {
                   // the error, because a new promise is created each time we add a
                   // `then`.
                   if (err.stack.indexOf(HEADER_MESSAGE) < 0) {
-                     err.stack += `\n${this.__originalErrorStack}`;
+                     let stack = filterStack(this.__originalErrorStack);
+
+                     err.stack += `\n${stack}`;
                   }
                   throw err;
                });
