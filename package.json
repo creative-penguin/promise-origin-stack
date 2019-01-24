@@ -9,7 +9,7 @@
    "author": "Jim Jenkins <jimjenkins5@gmail.com>",
    "license": "MIT",
    "devDependencies": {
-      "@silvermine/eslint-config": "2.0.0-rc3",
+      "@silvermine/eslint-config": "2.0.0-rc4",
       "eslint": "5.12.0"
    }
 }
