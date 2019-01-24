@@ -21,6 +21,17 @@ function filterStack(stack) {
 
 
 module.exports = {
+
+
+   /**
+    * Register the shim.
+    *
+    * This overrides the native constructor to store a stack trace and overrides the
+    * native `then` to add a `catch` which appends the origin stack the native error.
+    *
+    * @param {string} [headerMSG=Promise Created At:] - Label for the the origin stack
+    * @returns {void}
+    */
    register(headerMSG) {
       const HEADER_MESSAGE = headerMSG || 'Promise Created At:';
 
