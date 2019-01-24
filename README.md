@@ -47,7 +47,7 @@ Since each `.then` returns a new promise, the origin point will usually point to
 ## Example
 
 ```javascript
-require('./src/index').register();
+require('promise-origin-stack').register();
 
 function bad() {
    throw new Error('This error will have extra information');
