@@ -42,11 +42,9 @@ module.exports = {
          /**
           * Override to throw new error with additional stack trace information.
           */
-         then(onResolved, rejected) {
-            var promise = super.then(onResolved, rejected);
-
-            if (!rejected) {
-               promise = promise.then(onResolved, (err) => {
+         then(onResolved, onRejected) {
+            if (!onRejected) {
+               return super.then(onResolved).catch((err) => {
                   // Don't add the additional trace info if it already exists. Otherwise,
                   // we'll add another trace for every `then` that follows the throw of
                   // the error, because a new promise is created each time we add a
@@ -60,7 +58,7 @@ module.exports = {
                });
             }
 
-            return promise;
+            return super.then(onResolved, onRejected);
          }
       };
    },
