@@ -1,14 +1,14 @@
 # Promise Origin Stack
 
-Since the dawn of time, there has been 1 major issue with the use of promises: The stack
-trace only goes back as far as the Promise's creation.
+Since the dawn of time, there has been one major issue with the use of promises: The stack
+trace only goes back as far as the Promise's creation  (or the last `then` in most cases).
 
 This leads to long nights spent debuging code.
  > I know my API call failed, but which of my many modules that use my API wrapper made
- > the call that failed?
+ > initial call that failed?
 
 Promise libraries like Q and Bluebird have long had settings to provide "long stack
-support", but now that native promises are supported by so many browsers and node, why
+support", but now that native promises are supported by so many browsers and Node, why
 should we need to use a heavy library just to add this one needed feature?
 
 Now we don't have to. Simply install and register `promise-origin-stack` and you'll get
