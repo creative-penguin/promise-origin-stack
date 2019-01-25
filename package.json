@@ -1,6 +1,6 @@
 {
    "name": "promise-origin-stack",
-   "version": "0.1.0",
+   "version": "0.1.1",
    "description": "Lightweight library to add the original stack trace to unhandled errors in promises",
    "main": "src/index.js",
    "scripts": {
