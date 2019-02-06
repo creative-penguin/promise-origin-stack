@@ -47,14 +47,16 @@ module.exports = {
             // error. Because each `.then` always creates a new Promise, this will point
             // to the last `.then` statement before the `.then` that threw the actual
             // error.
-            this.__originalErrorStack = (new Error(HEADER_MESSAGE)).stack;
+            if (!Promise.disableOriginStacks) {
+               this.__originalErrorStack = (new Error(HEADER_MESSAGE)).stack;
+            }
          }
 
          /**
           * Override to throw new error with additional stack trace information.
           */
          then(onResolved, onRejected) {
-            if (!onRejected) {
+            if (!onRejected && !Promise.disableOriginStacks) {
                return super.then(onResolved).catch((err) => {
                   // Don't add the additional trace info if it already exists. Otherwise,
                   // we'll add another trace for every `then` that follows the throw of

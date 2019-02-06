@@ -37,12 +37,29 @@ from the creation of the promise appended to it's own stack trace.
 You can continue to use your promises with no modification to the code.
 
 
-## A Caveat
+## Caveats
+
+### When is the Promise created?
 
 The originating stack will point to the creation of the promise that threw the error.
 Since each `.then` returns a new promise, the origin point will usually point to the
 `.then` before the erroring function, not necessarily `Promise.resolve` or `new Promise`.
 
+### Performance
+
+In order to get the original stack trace, `promise-origin-stack` has to create an error
+and save the stack whenever a promise is created. Unfortunately, creating an error is not
+a cheap operation. It takes a couple of milliseconds. Granted, that doesn't sound like a
+lot, but if you are creating many promises, chained together, this can take some time.
+Usually, this is only noticeable in limited use cases.
+
+To mitigate this problem, there is a flag to allow us to temporarily (or permanently)
+disable origin stacks after registering this package. Simply add the following code before
+you create your Promise.
+
+```javascript
+Promise.disableOriginStacks = true;
+```
 
 ## Example
 
